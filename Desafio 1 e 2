@@ -1,0 +1,32 @@
+##Desafio 1##
+
+--create procedure Desafio1
+alter procedure Desafio1
+@fraseDigitada varchar(255)
+as
+begin
+	declare @tamanhoString int, @cont int
+	set @cont = 0
+	set @tamanhoString  =  len(@fraseDigitada)
+	while @tamanhoString >= @cont
+		begin
+			print substring (@fraseDigitada, @cont, 1)
+			set @cont = @cont + 1
+		end
+end
+
+##Desafio 2##
+--create procedure Desafio2
+alter procedure Desafio2
+@fraseDigitada varchar(255)
+as
+begin
+	declare @tamanhoString int, @cont int
+	set @cont = 0
+	set @tamanhoString  =  len(@fraseDigitada)
+	while @tamanhoString >= @cont
+		begin
+			print substring (@fraseDigitada, @cont, 1)
+			set @cont = @cont + 2
+		end
+end
