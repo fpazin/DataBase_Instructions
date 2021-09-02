@@ -1,0 +1,41 @@
+/*Views é uma consulta armazena previamento para melhorar a consulta.
+
+É obrigatoriamente do tipo select e é armazenada na memoria RAM / Cache. 
+*/
+--Sintaxe simples
+
+create view viewCliente
+	(nome, cidade)
+as
+	select nome, cidade from Cliente
+
+--Select na View	
+select * from viewCliente
+
+
+--Alteração na View
+Alter view viewCliente
+	(nome, cidade, retorno)
+as
+	select nome, cidade, telefone from Cliente
+
+--Aplicando filtro na View respeitando os nomes q a view setou
+	
+	select * from viewCliente where cidade = 'Palmas'
+	
+--	Excercicio em sala
+-- Criar view que retorne os dados de cliente (Nome, Cidade)
+--  com os dados de conta do cliente (agencia, numero e saldo)
+
+create view viewDadosBancariosporCliente
+	(Nome, Cidade, Agencia, Conta_Corrente, Saldo)
+as
+select C.nome, C.cidade, CO.agencia, CO.numero, CO.saldo from cliente C
+	join Conta CO on
+	C.cod_cliente = CO.cod_cliente
+
+select * from viewDadosBancariosporCliente
+
+--TRIGGERS
+
+	

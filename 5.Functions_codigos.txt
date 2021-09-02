@@ -1,0 +1,52 @@
+--Sintaxe
+
+CREATE FUNCTION soma_dois_numeros (@Num1 float, @Num2 float)
+returns float
+as
+begin	
+	return @Num1 + @Num2
+end
+
+alter FUNCTION soma_dois_numeros (@Num1 float, @Num2 float)
+returns float
+as
+begin	
+	return @Num1 + @Num2
+end
+
+--Executando a função
+
+select dbo.soma_dois_numeros(1,2)
+
+----Atividade
+
+/*Criar uma tabela NOTA_FISCAL com (NUMERO, CODIGOPRODUTO, QUANTIDADE, PRECO)
+Fazer uma função que calcule e retorne o valor total de um determinado produto*/
+
+
+create table NOTA_FISCAL (numero int, 
+					codigoProduto varchar(255),			
+					quantidade int,
+					Preco float
+					);
+					
+create FUNCTION Total_produto (@COD int)
+returns float
+as
+begin	
+	return (select sum(quantidade * Preco) from NOTA_FISCAL where numero = @COD)
+end
+
+--OU
+
+create FUNCTION Total_produto (@COD int)
+returns float
+as
+begin
+	declare faturamento float
+	@faturamento = (select sum(quantidade * Preco) from NOTA_FISCAL where numero = @COD)	
+	return @faturamento 
+end
+
+select dbo.Total_produto(1)
+
